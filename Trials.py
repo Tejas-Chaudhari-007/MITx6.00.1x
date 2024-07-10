@@ -1,17 +1,23 @@
-import numpy as np
-x = 9
-a = 1
-b = x
-g = np.random.uniform(1, x)
-e = b - a
-n = 0
-while e > 0.01:
-    if g**2 > x:
-        b = g
-    elif g**2 < x:
-        a = g
-    e = b - a
-    g = (a + b) / 2
-    n += 1
-print((a+b)/2)
-print(n)
+def genPrimes():
+    gen_primes = [2]
+    x = 2
+    while True:
+        is_prime = True
+
+        for prev_prime in gen_primes:
+            if x % prev_prime == 0:
+                is_prime = False
+                break
+
+        if is_prime or x == 2:
+            gen_primes.append(x)
+            yield x
+
+        x += 1
+
+for i, x in enumerate(genPrimes()):
+    print(x)
+
+    if i == 15:
+        break
+
